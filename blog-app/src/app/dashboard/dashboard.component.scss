@@ -1,0 +1,319 @@
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: linear-gradient(to right, #775144, #c09891);
+  color: #fff;
+}
+
+/* Top Navigation styles */
+.topnav {
+  background-color: #2a0800;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+}
+
+
+.main-menu {
+  display: flex;
+  flex: 1;
+  font-size: 23px;
+  font-weight: 600;
+}
+
+.menu-item {
+  list-style: none;
+  margin-right: 20px;
+}
+
+
+.menu-item a {
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  border-radius: 4px;
+  transition: background 0.3s, color 0.3s;
+  
+}
+
+.topnav .menu-item a:hover {
+  background: rgb(109, 108, 108);
+}
+
+/* Align the search bar horizontally */
+.topnav .search-bar {
+  display: flex;
+  align-items: center;
+  width: 200px; /* Set a fixed width for the search bar */
+  padding: 0;
+  margin-left: 30px;
+}
+
+.search-bar input {
+  width: 100%; /* Full width of the container */
+  padding: 8px 30px 8px 10px; /* Adjust padding for icon space */
+  border: none;
+  outline: none;
+}
+
+.topnav .search-icon {
+  position: absolute;
+  right: 7px; /* Move the icon to the right */
+  color: #4d6a6d;
+  font-size: 18px;
+}
+
+/* Responsive adjustments for topnav */
+@media (max-width: 768px) {
+  .topnav {
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+  }
+
+  .topnav .search-bar {
+    margin-top: 10px;
+    width: 100%;
+  }
+}
+
+
+/* Search Bar Container */
+.search-bar {
+  display: flex;
+  align-items: center; /* Align items vertically */
+  position: relative; /* Allow absolute positioning of the icon */
+  width: 50px; /* Full width of the sidenav */
+  padding: 10px 15px; /* Adjust padding */
+  margin-top: 5px;
+  
+}
+
+/* Search Input */
+.search-bar input {
+  width: 75%; /* Make input fill the container width */
+  padding: 8px 10px 8px 30px; /* Add padding to the left for the icon space */
+  border: none; /* Remove border */
+  outline: none; /* Remove the default focus outline */
+  font-style: italic;
+  margin-left: -7px;
+}
+
+/* Search Icon */
+.search-bar .search-icon {
+  position: absolute; /* Position the icon absolutely */
+  left: 10px; /* Position the icon on the left */
+  color: #000000; /* Icon color */
+  font-size: 18px; /* Icon size */
+}
+
+/* Optional: Additional Styles for Focus */
+.search-bar input:focus {
+  border-bottom: 2px solid #333; /* Change the bottom line color on focus */
+}
+
+/* Main content styles */
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: #111111;
+  margin: 20px;
+  padding: 20px;
+  height: 100%;
+}
+
+/* Card container */
+.card-container {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping of cards */
+  gap: 16px; /* Space between cards */
+}
+
+/* Card styles */
+.card {
+  border-radius: 8px;
+  position: relative; /* Ensure the comment section is positioned correctly */
+  width: 300px; /* Fixed width for each card */
+  box-sizing: border-box;
+  border: 1px solid #646262;
+  margin-bottom: 16px; /* Space between cards */
+  display: flex;
+  flex-direction: column; /* Stack content vertically */
+  align-items: center; /* Center content horizontally */
+  padding: 16px; /* Padding inside the card */
+  background-color: #D3D9D4;
+  transition: width 0.3s, height 0.3s; /* Transition for smooth expansion */
+}
+
+.card.collapsed {
+  max-height: 200px; /* Fixed height for collapsed state */
+  overflow: hidden; /* Hide overflow content */
+}
+
+.card.expanded {
+  width: 100%; /* Expand to full width */
+  height: auto; /* Adjust height based on content */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .card-container {
+    justify-content: center; /* Center cards on smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    width: 100%; /* Full width on smaller screens */
+    max-width: none; /* Remove max-width constraint */
+    padding: 8px; /* Reduce padding on small screens */
+  }
+}
+
+.card.collapsed {
+  max-height: 200px;
+  overflow: hidden;
+}
+
+
+.expanded-comments {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #D3D9D4;
+  border-radius: 8px;
+}
+
+/* Comment section styles */
+.comment-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align the comments to the left */
+  margin-left: 0; /* Align to the left side of the card */
+  padding: 10px; /* Add padding for spacing */
+  border-top: 1px solid #ccc;
+  cursor:pointer;
+}
+
+.comment-box {
+  padding: 10px;
+  margin-bottom: 10px; /* Space between comments */
+  border-radius: 4px;
+  background-color: #f9f9f9; /* Light background for comment box */
+  width: 100%; /* Full width of the container */
+}
+
+.comment-header {
+  font-weight: bold;
+  margin-bottom: 5px; /* Space between the header and the comment text */
+}
+
+.comment-text {
+  margin-bottom: 8px; /* Space between text and actions */
+}
+
+/* Comment box action icons */
+.comment-actions {
+  font-size: 12px; /* Smaller font size for actions */
+  color: #007bff;
+  cursor: pointer;
+}
+
+.comment-actions i {
+  margin-right: 5px; /* Space between icon and text */
+}
+
+.new-comment-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align new comment input to the left */
+  width: 100%;
+  margin-top: 15px;
+}
+
+.new-comment-section textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+.button-container {
+  display: flex;
+  gap: 10px;
+}
+
+.button-container button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button-container button:hover {
+  background-color: #0056b3;
+}
+
+.comment-count {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Input box */
+input[type="text"] {
+  width: calc(100% - 22px); /* Full width minus padding */
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* Limit text area and input length */
+.max-length-reached {
+  border-color: #dc3545; /* Red border color when max length is reached */
+}
+
+
+.view-more {
+  display: inline-block;
+  margin-top: 10px;
+  cursor: pointer;
+  color: #156d7e;
+  font-weight: bold;
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+}
+
+.expanded .view-more {
+  position: relative; /* Adjust positioning when expanded */
+  right: 0;
+  bottom: 0;
+}
+
+.close-button {
+  display: inline-block;
+  margin-top: 10px;
+  cursor: pointer;
+  color: #d9534f; /* Red color to signify closing */
+  font-weight: bold;
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+}
+
+.expanded .close-button {
+  position: relative; /* Adjust positioning when expanded */
+  right: 0;
+  bottom: 0;
+}
+
+.close-button:hover {
+  color: #c9302c; /* Darker red on hover */
+}

@@ -1,0 +1,76 @@
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+<div class="layout-container">
+  <div class="sidenav">
+    <div class="hamburger-icon">
+      <i class="fa fa-bars"></i>
+    </div>
+    <nav class="main-menu">
+      <div class="menu-item">
+        <a [routerLink]="['/profile']" routerLinkActive="active">
+          <i class="fa-regular fa-user"></i>
+          <span class="nav-text">Profile</span>
+        </a>
+      </div>
+      <div class="menu-item">
+        <a [routerLink]="['/dashboard']" routerLinkActive="active">
+          <i class="fa-brands fa-blogger"></i>
+          <span class="nav-text">Blogs</span>
+        </a>
+      </div>
+    </nav>
+  </div>
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Title text field -->
+    <div class="title-field">
+      <label for="title">Title:</label>
+      <input
+        type="text"
+        id="title"
+        [(ngModel)]="postTitle"
+        placeholder="Enter your title here"
+        required
+        #titleInput="ngModel"
+      />
+      <div *ngIf="titleInput.invalid && (titleInput.dirty || titleInput.touched)" class="error-message">
+        You need to input a title.
+      </div>
+    </div>
+
+    <div class="post-container">
+      <!-- Created by field -->
+      <div class="created-by-field">
+        <label for="createdBy">Author:</label>
+        <input
+          type="text"
+          id="createdBy"
+          [(ngModel)]="postCreator"
+          placeholder="Enter your name"
+          required
+          #creatorInput="ngModel"
+        />
+        <div *ngIf="creatorInput.invalid && (creatorInput.dirty || creatorInput.touched)" class="error-message">
+          Author name is required.
+        </div>
+      </div>
+
+      <!-- Quill editor -->
+      <div class="editor-container">
+        <quill-editor
+          #editor
+          [(ngModel)]="postContent"
+          [modules]="editorModules"
+          class="quill-editor"
+          placeholder="What's on your mind?"
+        ></quill-editor>
+      </div>
+
+      <!-- Action buttons -->
+      <div class="actions">
+        <button (click)="cancelPost()">Cancel</button>
+        <button type="button" (click)="saveChanges()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>

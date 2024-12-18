@@ -1,0 +1,77 @@
+<div class="layout-container">
+  <div class="topnav">
+    <nav class="main-menu">
+      <div class="menu-item">
+        <a [routerLink]="['/profile']" routerLinkActive="active">
+          <i class="fa-regular fa-user"></i>
+          <span class="nav-text">Profile</span>
+        </a>
+      </div>
+      <div class="menu-item">
+        <a [routerLink]="['/dashboard']" routerLinkActive="active">
+          <i class="fa-brands fa-blogger"></i>
+          <span class="nav-text">Recipe</span>
+        </a>
+      </div>
+      <div class="menu-item add-blog">
+        <a [routerLink]="['/add-post']" routerLinkActive="active">
+          <i class="fa-solid fa-circle-plus"></i>
+          <span class="nav-text">Add Post</span>
+        </a>
+      </div>
+      <div class="menu-item logout">
+        <a (click)="logout()">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          <span class="nav-text">Logout</span>
+        </a>
+      </div>
+    </nav>
+  </div>
+
+  <div class="main-content">
+    <div class="posts-header">
+      <h1>Your Posts</h1>
+    </div>
+
+    <div *ngIf="posts.length; else noPosts">
+      <div class="posts-container">
+        <div *ngFor="let post of posts" class="post-card" [ngClass]="{'expanded': expandedPostId === post.post_id}">
+          <div class="post-body">
+            <div class="post-header">
+              <h2>{{ post.title }}</h2>
+              <div class="post-actions">
+                <a (click)="editPost(post.post_id)" class="action-link edit-link">
+                  <i class="fas fa-edit"></i>
+                </a>
+                <a (click)="deletePost(post.post_id)" class="action-link delete-link">
+                  <i class="fas fa-trash-alt"></i>
+                </a>
+              </div>
+            </div>
+            <div class="post-content">
+              <ng-container *ngIf="expandedPostId === post.post_id; else collapsedContent">
+                <div [innerHTML]="post.sanitizedContent"></div>
+              </ng-container>
+              <ng-template #collapsedContent>
+                <div [innerHTML]="post.sanitizedSummary"></div>
+              </ng-template>
+            </div>
+            <span *ngIf="post.content.length > 200 && expandedPostId !== post.post_id" 
+              (click)="toggleExpand(post.post_id)" 
+              class="view-more">
+              See More
+            </span>
+            <span *ngIf="expandedPostId === post.post_id" 
+              (click)="toggleExpand(post.post_id)" 
+              class="close-button">
+              See Less
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ng-template #noPosts>
+      <p>No blogs posted.</p>
+    </ng-template>
+  </div>
+</div>

@@ -1,0 +1,195 @@
+.layout-container {
+  display: flex;
+  height: 92vh;
+  background: linear-gradient(to left, #748d92, #2e3944);
+}
+
+/* Side Navigation styles */
+.sidenav {
+  width: 60px; /* Initial width of the side navigation */
+  background-color: #2e3944;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 15px 0;
+  box-sizing: border-box;
+  transition: width 0.3s; /* Transition effect for width */
+  overflow: hidden; /* Hide overflow content */
+}
+
+.sidenav:hover {
+  width: 250px; /* Expanded width on hover */
+}
+
+.hamburger-icon {
+  font-size: 1.5em;
+  margin: 0 auto;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+/* Main Menu */
+.main-menu {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-item {
+  margin-bottom: 20px;
+  list-style-type: none;
+}
+
+.menu-item a {
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 25px 15px;
+  transition: background 0.3s;
+  border-radius: 4px;
+  margin-top: -10px;
+}
+
+.menu-item a:hover {
+  background: rgb(109, 108, 108);
+}
+
+.menu-item i {
+  margin-right: 8px;
+  font-size: 2.5em;
+}
+
+.nav-text {
+  font-size: 20px;
+  opacity: 0; /* Hide text initially */
+  transition: opacity 0.3s; /* Transition effect for opacity */
+}
+
+.sidenav:hover .nav-text {
+  opacity: 1; /* Show text on hover */
+}
+
+
+
+.main-content {
+  flex: 1; /* Take up remaining space */
+  padding: 20px;
+  overflow-y: auto; /* Enable scrolling if content overflows */
+  margin-top: 10px;
+}
+
+.title-field, .created-by-field {
+  margin-bottom: 15px; /* Space between fields */
+  width: 100%;
+  max-width: 90%;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 30px;
+  color: #fff;
+}
+
+ .created-by-field input {
+  padding: 10px;
+  margin-left: 20px;
+  margin-bottom: 5px;
+  font-style: italic;
+  border: none; /* Remove the border */
+}
+
+.title-field input {
+  padding: 10px;
+  margin-left: 53px;
+  border: none; /* Remove the border */
+  font-style: italic;
+}
+
+.title-field input:focus, .created-by-field input:focus {
+  border: none; /* Remove the border on focus */
+  outline: none; /* Remove the default focus outline */
+  width: 50%;
+
+}
+
+.actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end; /* Align items to the right */
+  margin-right: 0px;
+}
+
+.actions button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  background-color: #D3D9D4;
+  color: black;
+  cursor: pointer;
+  font-size: 20px;
+  margin: 10px 5px 0;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.actions button:hover {
+  background-color: rgb(51, 51, 51); /* Background color on hover */
+}
+
+.editor-container {
+  
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  padding: 20px !important; /* Optional padding around the editor */
+  border-width: 0px;
+  background-color: #D3D9D4;
+  border-radius: 10px;
+}
+
+.quill-editor {
+  width: 100% !important; /* Larger width */
+  height: 500px !important; /* Larger height */
+  border-radius: 8px !important; /* More rounded corners */
+  outline: none !important; /* Remove default focus outline */
+}
+
+.ql-editor {
+  min-height: 100% !important; /* Ensure editor content area fills the container */
+  font-size: 20px; /* Larger font size */
+  color: black; /* Black font color */
+}
+
+/* Style block elements for larger font size */
+.ql-editor h1,
+.ql-editor h2,
+.ql-editor h3,
+.ql-editor p,
+.ql-editor li {
+  font-size: 30px; /* Adjust as necessary */
+}
+
+/* Style the toolbar */
+.ql-toolbar {
+  background-color: #303d33; /* Light background for the toolbar */
+  border: none; /* Remove border */
+}
+
+/* Style the toolbar buttons */
+.ql-toolbar .ql-formats {
+  color: #000; /* Black color for icons */
+}
+
+/* Style links in the editor */
+.ql-editor a {
+  color: blue; /* Color for links, adjust as necessary */
+}
+
+/* Adjust the size of the cursor */
+.ql-editor .ql-cursor {
+  border-left: 2px solid black; /* Thicker black cursor */
+}
+
+/* Customize the size of images (if applicable) */
+.ql-editor img {
+  max-width: 100%; /* Ensure images fit the editor width */
+  height: auto; /* Maintain aspect ratio */
+}

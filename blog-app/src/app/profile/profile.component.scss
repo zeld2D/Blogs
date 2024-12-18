@@ -1,0 +1,160 @@
+/* Layout Container */
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: linear-gradient(to right, #775144, #c09891);
+  color: #fff;
+}
+
+/* Top Navigation */
+.topnav {
+  background-color: #2a0800;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+}
+
+.main-menu {
+  display: flex;
+  flex: 1;
+}
+
+.menu-item {
+  list-style: none;
+  margin-right: 20px;
+}
+
+.menu-item a {
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  border-radius: 4px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.menu-item a:hover {
+  background-color: #5a6b6b;
+}
+
+.menu-item i {
+  margin-right: 10px;
+  font-size: 1.5em;
+}
+
+.nav-text {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* Logout Button */
+.logout {
+  margin-left: auto;
+}
+
+/* Add Blog Button */
+.add-blog {
+  margin-left: 20px;
+}
+
+.add-blog a {
+  background-color: #B8E0D2;
+  color: black;
+}
+
+.add-blog a:hover {
+  background-color: #bea8a7;
+}
+
+/* Main Content */
+.main-content {
+  padding: 20px;
+  background: #f1f5f8;
+  color: #cdc1ff;
+  overflow-y: auto;
+  margin: 20px;
+  padding: 20px;
+  height: 100%;
+}
+
+.posts-header h1 {
+  color: #2e3944;
+  margin-bottom: 20px;
+}
+
+.posts-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* Post Card */
+.post-card {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 15px;
+  width: calc(50% - 10px);
+  transition: box-shadow 0.3s;
+}
+
+.post-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.post-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.action-link {
+  cursor: pointer;
+  font-size: 1.2em;
+}
+
+.edit-link {
+  color: green;
+}
+
+.delete-link {
+  color: red;
+}
+
+.post-content {
+  color: #333;
+  overflow: hidden;
+  max-height: 200px;
+  text-overflow: ellipsis;
+}
+
+.view-more, .close-button {
+  cursor: pointer;
+  display: inline-block;
+  font-weight: bold;
+  color: #156d7e;
+}
+
+.view-more:hover, .close-button:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .post-card {
+    width: 100%;
+  }
+
+  .main-menu {
+    flex-direction: column;
+  }
+}
+

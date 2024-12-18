@@ -1,0 +1,120 @@
+<div class="layout-container">
+  <!-- Top Navigation -->
+  <div class="topnav">
+    <nav class="main-menu">
+      <div class="menu-item profile">
+        <a [routerLink]="['/profile']" routerLinkActive="active">
+          <i class="fa-regular fa-user"></i>
+          <span class="nav-text">Profile</span>
+        </a>
+      </div>
+      <div class="menu-item blogs">
+        <a [routerLink]="['/dashboard']" routerLinkActive="active">
+          <i class="fa-brands fa-blogger"></i>
+          <span class="nav-text"> Recipes</span>
+        </a>
+      </div>
+    </nav>
+    <div class="search-bar">
+      <i class="fa fa-search search-icon"></i>
+      <input type="text" [(ngModel)]="searchTerm" placeholder="" (input)="searchPosts()">
+    </div>
+  </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="dashboard-section">
+        <div class="card-container">
+          <div *ngFor="let post of filteredPosts" class="card" 
+            [ngClass]="{'expanded': expandedPostId === post.post_id, 'collapsed': expandedPostId && expandedPostId !== post.post_id}">
+            <div class="card-body">
+              <!-- Main content of the card -->
+              <div class="card-content">
+                <h2 class="card-title"><strong></strong> {{ post.title }}</h2>
+                <div class="card-text">
+                  <p *ngIf="expandedPostId === post.post_id; else collapsedContent" class="expanded-content" 
+                    [innerHTML]="post.sanitizedContent"></p>
+                  <ng-template #collapsedContent>
+                    <p class="collapsed-content" [innerHTML]="post.sanitizedSummary"></p>
+                  </ng-template>
+                </div>
+                <p class="card-text"><strong>Created by:</strong> {{ post.created_by }}</p>
+                <p class="card-text"><strong>Date Posted:</strong> {{ post.created_at | date }}</p>
+  
+                  <!-- View More / Close Button -->
+                  <span *ngIf="post.content.length > 200 && expandedPostId !== post.post_id" 
+                    (click)="toggleExpand(post.post_id)" 
+                    class="view-more">
+                See More
+              </span>
+              
+              <span *ngIf="expandedPostId === post.post_id" 
+                    (click)="toggleExpand(post.post_id)" 
+                    class="close-button">
+                See Less
+              </span>
+                
+              </div> 
+  
+  
+              
+  
+  <!-- Comment section -->
+  <div class="comment-section">
+    <span (click)="toggleComments(post.post_id)">
+      <i class="fas fa-comment-dots"></i> <!-- Font Awesome Messenger-like icon -->
+      <span>
+        Comments
+        <span *ngIf="expandedCommentPostId === post.post_id">: {{ post.commentsCount }} </span>
+      </span>
+    </span>
+  </div>
+  
+  <!-- Expandable comment section -->
+  <div *ngIf="expandedCommentPostId === post.post_id" class="expanded-comments">
+    <div class="comment-container">
+      <!-- Loop through each comment of the post -->
+      <ng-container *ngFor="let comment of post.comments">
+        <div class="comment-box">
+          <p *ngIf="!comment.isEditing"><strong>{{ comment.username }}</strong>: {{ comment.comment_text }}</p>
+  
+          <!-- Edit comment form -->
+          <div *ngIf="comment.isEditing">
+            <textarea [(ngModel)]="comment.comment_text"
+                      rows="3"
+                      [ngClass]="{'max-length-reached': comment.comment_text.length >= 150}">
+            </textarea>
+            <!-- Container for the button -->
+            <div class="button-container">
+              <button (click)="saveComment(comment)">Save</button>
+              <button (click)="cancelEdit(comment)">Cancel</button>
+            </div>
+          </div>
+  
+          <!-- Comment actions (Edit/Delete) -->
+          <div class="comment-actions" *ngIf="comment.user_id == userId">
+            <i class="fas fa-pencil-alt" *ngIf="!comment.isEditing" (click)="editComment(comment)"></i>
+            <i class="fas fa-trash-alt" (click)="deleteComment(comment)"></i>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  
+    <!-- Section for adding a new comment -->
+    <div class="new-comment-section">
+      <textarea [(ngModel)]="newComment"
+                placeholder="Add a comment"
+                rows="3"
+                maxlength="150"
+                [ngClass]="{'max-length-reached': newComment.length >= 150}">
+      </textarea>
+      <button (click)="addComment(post.post_id)">Comment</button>
+    </div>
+  </div>
+  
+              
+  <!-- Template for no posts available -->
+  <ng-template #noPosts>
+    <p>No posts available.</p>
+  </ng-template>
+  
